@@ -1,0 +1,21 @@
+# Entornos virtuales
+venv/
+.env/
+.venv/
+
+# Archivos de Rasa generados automáticamente
+models/
+.rasa/
+logs/
+
+# Archivos temporales
+__pycache__/
+*.pyc
+
+# Cachés de pip
+pip-wheel-metadata/
+pip-log.txt
+
+# Archivos grandes
+*.tar.gz
+*.zip

@@ -1,0 +1,30 @@
+version: "3.1"
+stories:
+
+# Flujo 1: Consulta de estado actual y riesgo
+- story: Consulta de estado y riesgo climático
+  steps:
+  - intent: consultar_clima
+  - action: action_check_weather_risk # Ejecuta la lógica híbrida
+  - action: utter_clima_actual
+
+# Flujo 2: El usuario ajusta la sensibilidad (retroalimenta al GA)
+- story: Ajuste de parámetros del sistema por el usuario
+  steps:
+  - intent: ajustar_sensibilidad
+  - action: action_update_sensitivity # Actualiza los valores para el GA
+  - action: utter_confirmacion_ajuste
+
+# Flujo 3: Entrega de feedback al sistema de aprendizaje
+- story: Envío de retroalimentación de falsa alarma
+  steps:
+  - intent: dar_feedback
+  - action: action_process_feedback # Alimenta el Módulo de Gestión y Aprendizaje
+  - action: utter_agradecimiento_feedback
+  
+# Flujo 4: Solicitud de historial de predicciones
+- story: Solicitud de historial
+  steps:
+  - intent: consultar_historial
+  - action: utter_historial
+  - action: action_retrieve_history # Llama al Registro Histórico
