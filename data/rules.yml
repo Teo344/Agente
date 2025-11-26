@@ -2,12 +2,22 @@ version: "3.1"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - rule: Ask for rain probability
+    steps:
+      - intent: ask_rain_probability
+      - action: action_calculate_rain_risk
 
-- rule: Say 'I am a bot' anytime the user challenges
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - rule: Ask for current weather
+    steps:
+      - intent: ask_current_weather
+      - action: action_get_current_weather
+
+  - rule: Explain risk
+    steps:
+      - intent: ask_risk_explanation
+      - action: action_explain_risk
+
+  - rule: Change sensitivity
+    steps:
+      - intent: change_alert_sensitivity
+      - action: action_change_sensitivity

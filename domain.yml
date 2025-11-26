@@ -1,97 +1,29 @@
 version: "3.1"
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
 
-# ----------------- INTENTS -----------------
 intents:
-  - agente_saludo
-  - consultar_clima
-  - ajustar_sensibilidad
-  - dar_feedback
-  - consultar_historial
-  - afirmacion
-  - negacion
+  - ask_rain_probability
+  - ask_current_weather
+  - ask_risk_explanation
+  - change_alert_sensitivity
 
-# ----------------- ENTITIES -----------------
 entities:
-  - clima_variable
-  - sensibilidad_nivel
-  - valor
-  - unidad
-  - periodo_tiempo
-  - tipo_feedback
+  - sensitivity_level
 
-# ----------------- SLOTS (Memoria) -----------------
 slots:
-  estado_clima_actual:
-    type: text
-    influence_conversation: false
-    mappings:
-    - type: from_text
-      intent: consultar_clima
-  
-  umbral_actual:
-    type: float
-    influence_conversation: true
-    mappings:
-    - type: custom
-  
-  clima_variable:
+  sensitivity_level:
     type: text
     influence_conversation: true
     mappings:
-    - type: from_entity
-      entity: clima_variable
-      
-  sensibilidad_nivel:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: sensibilidad_nivel
-
-# ----------------- RESPONSES -----------------
-responses:
-  utter_saludo:
-  - text: "¡Hola! Soy tu Agente Climático Híbrido. Monitoreo las condiciones para proteger tu ropa. ¿Cómo puedo asistirte hoy?"
-  
-  utter_clima_actual:
-  - text: "El estado actual es: {estado_clima_actual}. El umbral de humedad ajustado por el GA es {umbral_actual}%."
-  
-  utter_alerta_riesgo:
-  - text: "🚨 ALERTA CRÍTICA: La regla lógica se ha activado. Se detecta ALTO RIESGO (humedad > {umbral_actual}%). ¡Recoge la ropa tendida de inmediato!"
-
-  utter_solicitar_feedback:
-  - text: "¿Me gustaría saber sobre mi última alerta? ¿Fue un acierto o una falsa alarma? Tu feedback ayuda a mi aprendizaje continuo."
-  
-  utter_confirmacion_ajuste:
-  - text: "He enviado la solicitud de ajuste. La sensibilidad para {clima_variable} ha sido marcada a '{sensibilidad_nivel}'. El Algoritmo Genético reoptimizará los umbrales pronto."
-  
-  utter_agradecimiento_feedback:
-  - text: "Gracias por la retroalimentación. Este dato crucial alimenta directamente el Módulo de Gestión y Aprendizaje."
-  
-  utter_historial:
-  - text: "Consultando el historial... Dame un momento."
-
-  utter_goodbye:
-  - text: "¡Adiós! Estaré monitoreando el clima. No dudes en consultarme."
-  - text: "Hasta pronto. Recuerda que el agente sigue activo, te avisaré si hay riesgo."
+      - type: from_entity
+        entity: sensitivity_level
 
 
-  utter_iamabot:
-  - text: "Soy un agente inteligente híbrido diseñado para detectar condiciones climáticas adversas y proteger tu ropa tendida. Fui creado por el Grupo 5 de la ESPE."
-
-
-  utter_default:
-  - text: "Disculpa, no entendí bien. ¿Podrías reformular tu pregunta?"
-
-  utter_ask_rephrase:
-  - text: "No estoy seguro de lo que me pides. ¿Podrías ser más específico sobre la consulta o el ajuste?"
-
-# ----------------- ACTIONS -----------------
 actions:
-  - action_check_weather_risk
-  - action_update_sensitivity
-  - action_process_feedback
-  - action_retrieve_history
+  - action_calculate_rain_risk
+  - action_get_current_weather
+  - action_explain_risk
+  - action_change_sensitivity
+
+responses:
+  utter_ask_sensitivity:
+    - text: "What sensitivity level would you like to set? (low, medium, high)"

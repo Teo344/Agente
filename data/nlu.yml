@@ -1,39 +1,26 @@
 version: "3.1"
+
 nlu:
-# Intención: agente_saludo
-- intent: agente_saludo
+- intent: ask_rain_probability
   examples: |
-    - Hola
-    - Buenos días agente
-    - Saludos
+    - What is the chance of rain?
+    - Will it rain today?
+    - Is there rain risk right now?
 
-# Intención: consultar_clima
-- intent: consultar_clima
+- intent: ask_current_weather
   examples: |
-    - ¿Qué dice el pronóstico?
-    - ¿Cuál es la [humedad](clima_variable) actual?
-    - ¿Hay riesgo de [lluvia](clima_variable)?
-    - ¿Necesito estar atento a la [temperatura](clima_variable)?
+    - What's the weather like?
+    - Show me the current climate.
+    - How is the weather outside?
 
-# Intención: ajustar_sensibilidad (para modificar umbrales)
-- intent: ajustar_sensibilidad
+- intent: ask_risk_explanation
   examples: |
-    - Quiero alertas [menos](sensibilidad_nivel) sensibles.
-    - Sube la sensibilidad del umbral de [humedad](clima_variable).
-    - Ajusta el umbral a [80](valor)[%](unidad) de [humedad](clima_variable).
-    - Haz que las alertas sean [más](sensibilidad_nivel) estrictas para la [lluvia](clima_variable).
-    - Cambia el nivel de [temperatura](clima_variable) a [alto](sensibilidad_nivel).
+    - Why is the rain risk high?
+    - Explain the alert.
+    - Why did you warn me?
 
-# Intención: dar_feedback (para el Módulo de Gestión y Aprendizaje)
-- intent: dar_feedback
+- intent: change_alert_sensitivity
   examples: |
-    - La alerta de [ayer](periodo_tiempo) fue [falsa alarma](tipo_feedback).
-    - La predicción de [hace una hora](periodo_tiempo) fue un [acierto](tipo_feedback).
-    - [Fue un error](tipo_feedback).
-    - [Acertaste](tipo_feedback).
-
-# Intención: consultar_historial
-- intent: consultar_historial
-  examples: |
-    - Muéstrame las alertas de la [semana pasada](periodo_tiempo).
-    - ¿Cuál es mi historial de predicciones?
+    - Set alert sensitivity to high.
+    - Lower the alert threshold.
+    - Change rainfall detection sensitivity.
